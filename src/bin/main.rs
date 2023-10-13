@@ -30,7 +30,7 @@ fn main() {
                 // Disabling window decorations to make it feel more like a widget than a window
                 decorations: false,
                 window_level:AlwaysOnTop,
-                resolution: (1910., 1080.).into(),
+                resolution: (1900., 1080.).into(),
                 present_mode: PresentMode::AutoVsync,
                 position: WindowPosition::At(IVec2{x:0,y:0,}) ,
                 #[cfg(target_os = "macos")]
@@ -41,11 +41,6 @@ fn main() {
         }))
         // ClearColor must have 0 alpha, otherwise some color will bleed through
         .insert_resource(ClearColor(Color::NONE))
-        .insert_resource(WinitSettings{
-            focused_mode: bevy::winit::UpdateMode::Continuous,
-            unfocused_mode: bevy::winit::UpdateMode::Continuous,
-            ..default()
-        })
         .insert_resource(MouseTrail{deltas_trail:([(0,0);TRAIL_SIZE]),delta_sum_trail:([(0,0);TRAIL_SIZE]),buffer_head:0,last_moved:0u32})
         .add_event::<StreamEvent>()
         .add_systems(Startup, (
@@ -159,23 +154,14 @@ fn move_dots(time: Res<Time>, mut m_trail:ResMut<MouseTrail>,  mut events: Event
             let mut size_scale:f32 = (trail_size  as f32 -0.75*(distance_from_head as f32))/(trail_size as f32); 
             let mut color_scale:f32 = (1.0-size_scale);
             
-            // if distance_from_head > 40 { 
-            //     color_scale = 20.0*(1.0-size_scale)/(radial_distance_from_head/2.0);
-            // }
-            // else { 
-            //     color_scale = 0.0; 
-            // }
-            
-           
-           
 
             if dot.core == true { 
-                transform.translation.z = 1.1;//(distance_from_head as f32);
-                sprite.color = Color::hsla(0.33,0.40,0.035+0.895*size_scale,0.6+0.4*size_scale);
+                transform.translation.z = (2*(trail_size - distance_from_head)) as f32;
+                sprite.color = Color::hsla(0.33,0.40,0.045+0.885*size_scale,0.6+0.4*size_scale);
                 transform.scale = Vec3::new(1.5*size_scale,1.5*size_scale,1.0); 
             }
             else { 
-                transform.translation.z = 1.0/((trail_size+distance_from_head) as f32); 
+                transform.translation.z =  (2*(trail_size - distance_from_head)) as f32; 
                 sprite.color = Color::hsla(0.14,0.84,0.7+0.2*size_scale, 0.05+0.05*size_scale);
                 transform.scale = Vec3::new(1.5*size_scale,1.5*size_scale,1.0); 
             }
@@ -191,6 +177,9 @@ fn move_dots(time: Res<Time>, mut m_trail:ResMut<MouseTrail>,  mut events: Event
         m_trail.buffer_head = 0; 
         m_trail.last_moved = 0; 
     }
+
+
+  
 
 
 }
