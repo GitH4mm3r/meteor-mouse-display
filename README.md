@@ -2,8 +2,7 @@
 
 A little mouse movement wrapping display written in bevy. Relative mouse movement is shown in an attractive meteor style. Could be useful for game/design streaming.
 Features mouse tracking without the window needing to be in focus. 
-Note: It to use a transparent window but microsoft windows updated something that broke transparency. Waiting for bevy or winit to fix.
-I believe transparency still works in linux.
+Note: It used to use a transparent window but microsoft windows updated something that broke transparency so I'm waiting for bevy or winit to fix. I believe transparency still works in linux.
 
 ```sh
 # Compile with cargo:
