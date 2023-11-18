@@ -9,5 +9,5 @@ Used to be transparent but windows updated something that broke transparency. Wa
 cargo run --bin main
 ```
 
-Preview:
+Preview: \
 ![mosuemovegif](https://github.com/GitH4mm3r/meteor-mouse-display/assets/143547743/23719eee-2e5e-4757-9332-ce853043d681)
