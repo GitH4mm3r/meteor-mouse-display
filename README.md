@@ -1,6 +1,8 @@
 # meteor-mouse-display
 
 A little wrapping display for mouse movement in an attractive meteor style. Could be useful for game/design streaming Built using bevy. 
+Features mouse tracking without the window needing to be in focus. 
+Used to be transparent but windows updated something that broke transparency. Waiting for bevy or winit to fix.
 
 ```sh
 # Compile with cargo:
